@@ -1,25 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.sass';
+
+import Button from '@material-ui/core/Button';
+import { Sidebar, Content, MoviesList } from './components';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      movies: []
+    };
+  }
+
+  componentDidMount() {
+    fetch(
+      'https://api.themoviedb.org/3/search/movie?api_key=b0730a1cf45ff798ff411242700e6f40&query=aquaman'
+    )
+      .then(response => response.json())
+      .then(movies => {
+        this.setState({
+          movies: movies.results
+        });
+      })
+      .catch(error => console.warn(error));
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Sidebar>
+          <Button color="secondary" variant="contained">
+            Click
+          </Button>
+        </Sidebar>
+        <Content>
+          <MoviesList movies={this.state.movies} />
+        </Content>
       </div>
     );
   }
