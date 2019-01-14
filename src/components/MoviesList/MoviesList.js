@@ -3,7 +3,11 @@ import { MovieCard } from '../index';
 
 import './MoviesList.sass';
 
-function MoviesList({ movies }) {
+function MoviesList({ movies, fetching }) {
+  if (fetching) {
+    return <div className="loading">Loading...</div>;
+  }
+
   return (
     <div className="movies-list">
       {movies.length > 0

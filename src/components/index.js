@@ -1,4 +1,9 @@
+export { default as App } from './App/App';
 export { default as Content } from './Content/Content';
-export { default as Sidebar } from './Sidebar/Sidebar';
-export { default as MoviesList } from './MoviesList/MoviesList';
+export { default as FiltersBar } from './FiltersBar/FiltersBar';
+export { default as Form } from './Form/Form';
+export { default as GenreItem } from './GenreItem/GenreItem';
+export { default as Header } from './Header/Header';
 export { default as MovieCard } from './MovieCard/MovieCard';
+export { default as MoviesList } from './MoviesList/MoviesList';
+export { default as Sidebar } from './Sidebar/Sidebar';

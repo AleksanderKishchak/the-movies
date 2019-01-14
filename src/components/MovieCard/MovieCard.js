@@ -6,10 +6,11 @@ import './MovieCard.sass';
 import moment from 'moment';
 
 function MovieCard({ movie }) {
-  const {
-    poster_path, original_title, release_date, overview
-  } = movie;
-  const formattedReleaseDate = moment(release_date).format('MMMM D, YYYY');
+  const { poster_path, title, release_date, overview } = movie;
+
+  const releaseDate = release_date
+    ? moment(release_date).format('MMMM D, YYYY')
+    : null;
 
   const posterUrl = poster_path
     ? `http://image.tmdb.org/t/p/w185/${poster_path}`
@@ -18,15 +19,19 @@ function MovieCard({ movie }) {
   return (
     <article className="movie-card">
       <div className="poster">
-        <img src={posterUrl} alt={original_title} />
+        <img src={posterUrl} alt={title} className="poster-image" />
       </div>
       <div className="info">
-        <h3 className="title">{original_title}</h3>
-        <time className="release-date">{formattedReleaseDate}</time>
+        <div className="title-wrapper">
+          <h3 className="title">{title}</h3>
+          {releaseDate && <time className="release-date">{releaseDate}</time>}
+        </div>
         <div className="description">{overview}</div>
-        <a href="#" className="more-info-link">
-          More info
-        </a>
+        <div className="more-info">
+          <a href="#" className="more-info-link">
+            More info
+          </a>
+        </div>
       </div>
     </article>
   );
