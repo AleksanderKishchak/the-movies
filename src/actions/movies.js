@@ -29,5 +29,5 @@ export function getMoviesByGenre(genreId) {
     fetchMoviesByGenre(genreId).then(movies => dispatch({ type: GET_MOVIES, movies }));
   }; */
 
-  return { type: 'GET_BY_GENRE', genreId };
+  return { type: GET_MOVIES_BY_GENRE, genreId };
 }
