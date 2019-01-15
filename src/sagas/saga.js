@@ -22,7 +22,7 @@ export function* getPopularMovies() {
 export function* getMoviesByName({ name }) {
   try {
     yield put({ type: MOVIES_REQUEST });
-    const movies = yield call(fetchMoviesByName, name || 'aquaman');
+    const movies = yield call(fetchMoviesByName, name);
     yield put({ type: GET_MOVIES_SUCCESS, movies });
   } catch (error) {
     console.error(error);
