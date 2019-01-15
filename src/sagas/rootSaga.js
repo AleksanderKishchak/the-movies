@@ -5,5 +5,5 @@ import {
 } from './saga';
 
 export default function* rootSaga() {
-  yield all([getMoviesByGenre, getMoviesByName, getPopularMovies, watchGettingMovies]);
+  yield all([getMoviesByGenre(), getMoviesByName(), getPopularMovies(), watchGettingMovies()]);
 }

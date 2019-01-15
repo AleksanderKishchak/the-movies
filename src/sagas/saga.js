@@ -3,36 +3,50 @@ import {
   GET_POPULAR_MOVIES,
   GET_MOVIES_BY_GENRE,
   GET_MOVIES_BY_NAME,
+  GET_MOVIES_SUCCESS,
   MOVIES_REQUEST
 } from '../actions/movies';
-import { takeEvery, put, call } from 'redux-saga/effects';
+import { put, call, takeEvery, takeLatest } from 'redux-saga/effects';
 import { fetchMoviesByName, fetchMoviesByPopularity, fetchMoviesByGenre } from '../api/apiCalls';
 
 export function* getPopularMovies() {
-  console.log('inside saga');
-  yield put({ type: MOVIES_REQUEST });
-  const data = yield call(fetchMoviesByPopularity);
-  yield put({ type: GET_POPULAR_MOVIES, data });
+  try {
+    console.log('popular');
+    yield put({ type: MOVIES_REQUEST });
+    const movies = yield call(fetchMoviesByPopularity);
+    yield put({ type: GET_MOVIES_SUCCESS, movies });
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export function* getMoviesByName({ name }) {
-  yield put({ type: MOVIES_REQUEST });
-  const data = yield call(fetchMoviesByName(name));
-  yield put({ type: GET_MOVIES_BY_NAME, data });
+  try {
+    console.log('by name', name);
+    yield put({ type: MOVIES_REQUEST });
+    const movies = yield call(fetchMoviesByName, name || 'aquaman');
+    yield put({ type: GET_MOVIES_SUCCESS, movies });
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export function* getMoviesByGenre({ genreId }) {
-  yield put({ type: MOVIES_REQUEST });
-  const data = yield call(fetchMoviesByGenre(genreId));
-  yield put({ type: GET_MOVIES_BY_GENRE, data });
+  try {
+    console.log('by genre', genreId);
+    yield put({ type: MOVIES_REQUEST });
+    const movies = yield call(fetchMoviesByGenre, genreId);
+    yield put({ type: GET_MOVIES_SUCCESS, movies });
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export function* watchGettingMovies() {
-  yield takeEvery(GET_POPULAR_MOVIES, getPopularMovies);
-  yield takeEvery(GET_MOVIES_BY_NAME, getMoviesByName);
-  yield takeEvery(GET_MOVIES_BY_GENRE, getMoviesByGenre);
+  yield takeLatest(GET_POPULAR_MOVIES, getPopularMovies);
+  yield takeLatest(GET_MOVIES_BY_NAME, getMoviesByName);
+  yield takeLatest(GET_MOVIES_BY_GENRE, getMoviesByGenre);
 }
-
 /* export function* fetchMovies({ payload = {} }) {
   const key = Object.keys(payload)[0];
   let movies;
