@@ -6,7 +6,6 @@ import store from './store';
 import { App } from './components';
 import { getMoviesByPopularity } from './actions/movies';
 
-window.store = store;
 store.dispatch(getMoviesByPopularity());
 
 ReactDOM.render(
