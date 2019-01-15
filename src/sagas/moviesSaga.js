@@ -6,10 +6,10 @@ import {
   GET_MOVIES_SUCCESS,
   MOVIES_REQUEST
 } from '../actions/movies';
-import { put, call, takeEvery, takeLatest } from 'redux-saga/effects';
+import { put, call, takeLatest } from 'redux-saga/effects';
 import { fetchMoviesByName, fetchMoviesByPopularity, fetchMoviesByGenre } from '../api/apiCalls';
 
-export function* getPopularMovies() {
+function* getPopularMovies() {
   try {
     yield put({ type: MOVIES_REQUEST });
     const movies = yield call(fetchMoviesByPopularity);
@@ -19,7 +19,7 @@ export function* getPopularMovies() {
   }
 }
 
-export function* getMoviesByName({ name }) {
+function* getMoviesByName({ name }) {
   try {
     yield put({ type: MOVIES_REQUEST });
     const movies = yield call(fetchMoviesByName, name);
@@ -29,7 +29,7 @@ export function* getMoviesByName({ name }) {
   }
 }
 
-export function* getMoviesByGenre({ genreId }) {
+function* getMoviesByGenre({ genreId }) {
   try {
     yield put({ type: MOVIES_REQUEST });
     const movies = yield call(fetchMoviesByGenre, genreId);
@@ -39,7 +39,7 @@ export function* getMoviesByGenre({ genreId }) {
   }
 }
 
-export function* watchGettingMovies() {
+export default function* watchGettingMovies() {
   yield takeLatest(GET_POPULAR_MOVIES, getPopularMovies);
   yield takeLatest(GET_MOVIES_BY_NAME, getMoviesByName);
   yield takeLatest(GET_MOVIES_BY_GENRE, getMoviesByGenre);
