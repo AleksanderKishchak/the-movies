@@ -24,7 +24,7 @@ export function* getMoviesByName({ name }) {
   try {
     console.log('by name', name);
     yield put({ type: MOVIES_REQUEST });
-    const movies = yield call(fetchMoviesByName, name || 'aquaman');
+    const movies = yield call(fetchMoviesByName, name);
     yield put({ type: GET_MOVIES_SUCCESS, movies });
   } catch (error) {
     console.error(error);
@@ -47,21 +47,3 @@ export function* watchGettingMovies() {
   yield takeLatest(GET_MOVIES_BY_NAME, getMoviesByName);
   yield takeLatest(GET_MOVIES_BY_GENRE, getMoviesByGenre);
 }
-/* export function* fetchMovies({ payload = {} }) {
-  const key = Object.keys(payload)[0];
-  let movies;
-  console.log(key);
-
-  switch (key) {
-    case 'genreId':
-      movies = yield call(fetchMoviesByGenre, payload[key]);
-
-    case 'name':
-      movies = yield call(fetchMoviesByName, payload[key]);
-
-    default:
-      movies = yield call(fetchMoviesByPopularity);
-  }
-
-  yield put({ type: 'GET_MOVIES', movies });
-} */
