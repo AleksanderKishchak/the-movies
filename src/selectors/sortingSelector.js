@@ -12,7 +12,6 @@ export const getSortedMovies = createSelector(
   [getMovies, getSortingType],
   (movies, sortingType) => {
     const newMovies = [...movies];
-    console.log('inside selector', movies, sortingType);
     switch (sortingType) {
       case POPULARITY_DESC:
         return newMovies.sort((movie1, movie2) => movie2.popularity - movie1.popularity);
