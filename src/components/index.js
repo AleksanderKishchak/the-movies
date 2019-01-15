@@ -7,3 +7,4 @@ export { default as Header } from './Header/Header';
 export { default as MovieCard } from './MovieCard/MovieCard';
 export { default as MoviesList } from './MoviesList/MoviesList';
 export { default as Sidebar } from './Sidebar/Sidebar';
+export { default as SortingBar } from './SortingBar/SortingBar';
