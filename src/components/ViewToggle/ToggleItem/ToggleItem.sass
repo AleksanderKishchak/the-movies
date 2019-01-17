@@ -1,0 +1,26 @@
+.toggle-item
+  display: inline-block
+  padding: 3px 4px 0 4px
+  border: 1px solid #d2d5d6
+  background-color: #fff
+  font-weight: 600
+  font-size: .75rem
+  letter-spacing: .5px
+  text-transform: uppercase
+  color: #2196f3
+  cursor: pointer
+
+  &:hover
+    background-color: rgba(#2196f3, .5)
+
+  &:not(:last-of-type)
+    border-right: 1px solid transparent
+
+  &:first-of-type
+    border-radius: 4px 0 0 4px
+  &:last-of-type
+    border-radius: 0 4px 4px 0
+
+.toggle-item.active
+    background-color: #2196f3
+    color: white

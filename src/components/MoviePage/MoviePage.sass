@@ -1,0 +1,49 @@
+.movie
+  display: flex
+  margin: 1rem
+  color: #212121
+  
+  .poster-wrapper
+    flex-basis: 40%
+  
+  .poster
+    object-fit: cover
+    max-width: 100%
+
+  .movie-info
+    flex-basis: 60%
+    padding: 2rem
+    padding-top: 0.5rem
+    box-sizing: border-box
+  
+    .movie-name
+      margin: 0
+      margin-right: 4px
+      display: inline-block
+
+    .status
+      font-size: 0.8rem
+      color: #797979
+      margin-bottom: 2rem
+
+    .info-list
+      dt
+        font-weight: bold
+        margin-bottom: 0.3rem
+      dd
+        margin-left: 0
+        margin-bottom: 1rem
+
+.error-message
+  background-color: #cf362b
+  border: 2px solid #a60c0c
+  color: #fff
+  padding: 0.6rem
+  margin: 1rem
+  border-radius: 5px
+
+@media screen and (max-width: 768px)
+  .movie
+    flex-flow: column 
+    .poster-wrapper
+      flex-basis: 100%

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
 
 import './Form.sass';
 
@@ -32,7 +33,7 @@ class Form extends Component {
   };
 
   onSubmit = e => {
-    const { onSubmit } = this.props;
+    const { onSubmit, history, location } = this.props;
     const { input } = this.state;
     e.preventDefault();
 
@@ -40,6 +41,10 @@ class Form extends Component {
 
     if (typeof onSubmit === 'function') {
       onSubmit(input);
+    }
+
+    if (location.pathname !== '/') {
+      history.push('/');
     }
   };
 
@@ -54,12 +59,11 @@ class Form extends Component {
           type="search"
           value={input}
           name="input"
+          margin="normal"
         />
-        <div className="submit-button">
-          <Button margin="normal" type="submit">
-            search
-          </Button>
-        </div>
+        <IconButton type="submit" aria-label="search">
+          <SearchIcon />
+        </IconButton>
       </form>
     );
   }

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import List from '@material-ui/core/List';
-import Collapse from '@material-ui/core/Collapse';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import StyledListItem from './StyledListItem';
+import './SortingBar.sass';
+
+import Select from '@material-ui/core/Select';
+import StyledMenuItem from './StyledMenuItem';
 
 import {
   POPULARITY_ASC,
@@ -14,74 +14,51 @@ import {
 } from '../../selectors/sortingSelector';
 
 class SortingBar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isOpen: false
-    };
-  }
-
-  close = () => {
-    this.setState({
-      isOpen: false
-    });
+  static propTypes = {
+    onSetSorting: PropTypes.func.isRequired,
+    activeSorting: PropTypes.string.isRequired
   };
 
-  toggleOpen = () => {
-    this.setState(state => ({
-      isOpen: !state.isOpen
-    }));
-  };
+  handleChange = e => {
+    const { value } = e.target;
+    const { onSetSorting, activeSorting } = this.props;
 
-  handleItemClick = sortingType => {
-    this.props.onSetSorting(sortingType);
-    this.close();
+    if (value !== activeSorting) {
+      onSetSorting(value);
+    }
   };
 
   render() {
-    const { isOpen } = this.state;
     const { activeSorting } = this.props;
 
     return (
-      <List>
-        <StyledListItem button onClick={this.toggleOpen}>
-          Sort by
-          {isOpen ? <ExpandLess /> : <ExpandMore />}
-        </StyledListItem>
-        <Collapse in={isOpen} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <StyledListItem
-              button
-              onClick={this.handleItemClick.bind(this, POPULARITY_DESC)}
-              selected={POPULARITY_DESC === activeSorting}
-            >
-              Popularity &uarr;
-            </StyledListItem>
-            <StyledListItem
-              button
-              onClick={this.handleItemClick.bind(this, POPULARITY_ASC)}
-              selected={POPULARITY_ASC === activeSorting}
-            >
-              Popularity &darr;
-            </StyledListItem>
-            <StyledListItem
-              button
-              onClick={this.handleItemClick.bind(this, RELEASE_DATE_DESC)}
-              selected={RELEASE_DATE_DESC === activeSorting}
-            >
-              Release Date &uarr;
-            </StyledListItem>
-            <StyledListItem
-              button
-              onClick={this.handleItemClick.bind(this, RELEASE_DATE_ASC)}
-              selected={RELEASE_DATE_ASC === activeSorting}
-            >
-              Release Date &darr;
-            </StyledListItem>
-          </List>
-        </Collapse>
-      </List>
+      <div className="sorting">
+        Sort by:
+        <div className="select-wrapper">
+          <Select
+            style={{ marginLeft: 10 }}
+            value={activeSorting}
+            onChange={this.handleChange}
+            inputProps={{
+              name: 'age',
+              id: 'age-simple'
+            }}
+          >
+            <StyledMenuItem value={POPULARITY_DESC}>
+              Popularity <span>&uarr;</span>
+            </StyledMenuItem>
+            <StyledMenuItem value={POPULARITY_ASC}>
+              Popularity <span>&darr;</span>
+            </StyledMenuItem>
+            <StyledMenuItem value={RELEASE_DATE_DESC}>
+              Release Date <span>&uarr;</span>
+            </StyledMenuItem>
+            <StyledMenuItem value={RELEASE_DATE_ASC}>
+              Release Date <span>&darr;</span>
+            </StyledMenuItem>
+          </Select>
+        </div>
+      </div>
     );
   }
 }
