@@ -1,0 +1,22 @@
+.loader-wrap
+  display: flex
+  justify-content: center
+  align-items: center
+  margin: 1rem
+
+.loader
+  width: 2rem
+  height: 2rem
+  border-radius: 50%
+  border: 7px solid rgba(0,0,0, .2)
+  border-top-color: #2196f3
+  animation: 2s spin infinite linear
+
+@keyframes spin
+  0%
+    transform: rotateZ(0)
+  50% 
+    transform: rotateZ(180deg)    
+  100% 
+    transform: rotateZ(360deg)
+  
