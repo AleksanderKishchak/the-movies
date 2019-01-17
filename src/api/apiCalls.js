@@ -3,8 +3,12 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
 const apiKey = '?api_key=b0730a1cf45ff798ff411242700e6f40';
-const language = '&language=ru-RU';
-/*eslint-disable*/
+const language = '&language=en-EN';
+
+export function fetchMovie(id) {
+  const url = `/movie/${id}${apiKey}${language}&append_to_response=videos`;
+  return axios.get(url).then(response => response.data);
+}
 
 export function fetchMoviesByName(name) {
   const url = `search/movie${apiKey}&query=${name}${language}`;
