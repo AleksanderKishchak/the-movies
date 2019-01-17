@@ -5,7 +5,8 @@ import { getSortedMovies } from '../selectors/sortingSelector';
 
 const mapStateToProps = state => ({
   movies: getSortedMovies(state),
-  fetching: state.fetching
+  fetching: state.fetching,
+  activeViewType: state.viewType
 });
 
 export default connect(mapStateToProps)(MoviesList);
