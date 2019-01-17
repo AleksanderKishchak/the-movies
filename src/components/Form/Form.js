@@ -9,7 +9,9 @@ import './Form.sass';
 
 class Form extends Component {
   static propTypes = {
-    onSubmit: PropTypes.func
+    onSubmit: PropTypes.func,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
   };
 
   static defaultProps = {
