@@ -1,15 +1,47 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import { withStyles } from '@material-ui/core/styles';
 
 import './Form.sass';
 
+const styles = () => ({
+  input: {
+    color: 'white'
+  },
+  formControl: {
+    marginBottom: 6,
+    flexDirection: 'row',
+    flexBasis: 300
+  },
+  cssLabel: {
+    color: 'white',
+    '&$cssFocused': {
+      color: 'white'
+    }
+  },
+  cssFocused: {},
+  cssUnderline: {
+    '&:after': {
+      borderBottomColor: 'white'
+    },
+    borderBottomColor: 'white',
+    '&:before': {
+      borderBottomColor: 'white'
+    }
+  }
+});
+
 class Form extends Component {
   static propTypes = {
-    onSubmit: PropTypes.func
+    onSubmit: PropTypes.func,
+    history: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired
   };
 
   static defaultProps = {
@@ -50,23 +82,39 @@ class Form extends Component {
 
   render() {
     const { input } = this.state;
+    const { classes } = this.props;
 
     return (
       <form onSubmit={this.onSubmit} className="search-form">
-        <TextField
-          onChange={this.onChange}
-          label="Search"
-          type="search"
-          value={input}
-          name="input"
-          margin="normal"
-        />
+        <FormControl className={classes.formControl}>
+          <InputLabel
+            htmlFor="search-input"
+            classes={{
+              root: classes.cssLabel,
+              focused: classes.cssFocused
+            }}
+          >
+            Search
+          </InputLabel>
+          <Input
+            onChange={this.onChange}
+            type="search"
+            value={input}
+            name="input"
+            id="search-input"
+            fullWidth
+            classes={{
+              underline: classes.cssUnderline
+            }}
+            className={classes.input}
+          />
+        </FormControl>
         <IconButton type="submit" aria-label="search">
-          <SearchIcon />
+          <SearchIcon className="search-icon" />
         </IconButton>
       </form>
     );
   }
 }
 
-export default Form;
+export default withStyles(styles)(Form);
