@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
-import withMobileDetection from '../withMobileDetection';
 
 import './App.sass';
 import MoviesList from '../../containers/MoviesListContainer';
 import GenresList from '../../containers/GenresListContainer';
 import SortingBar from '../../containers/SortingBarContainer';
+import withMobileDetection from '../withMobileDetection';
 import {
   Sidebar, Content, Header, MoviePage, NotFound
 } from '../index';
@@ -26,10 +26,10 @@ class App extends Component {
     });
   };
 
-  openSidebar = () => {
-    this.setState({
-      isSidebarOpen: true
-    });
+  toggleSidebar = () => {
+    this.setState(state => ({
+      isSidebarOpen: !state.isSidebarOpen
+    }));
   };
 
   render() {
@@ -38,9 +38,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header isMobile={isMobile} openSidebar={this.openSidebar} />
+        <Header isMobile={isMobile} toggleSidebar={this.toggleSidebar} />
         <Sidebar isMobile={isMobile} isOpen={isSidebarOpen} onClose={this.closeSidebar}>
-          {isMobile && <SortingBar />}
           <GenresList />
         </Sidebar>
         <Content>

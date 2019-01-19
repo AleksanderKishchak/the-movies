@@ -13,7 +13,6 @@ const detectMobile = () => {
     'iemobile'
   ];
   const ua = navigator.userAgent.toLowerCase();
-
   return mobiles.some(mobile => ua.includes(mobile));
 };
 

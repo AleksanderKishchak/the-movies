@@ -1,24 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import Menu from '@material-ui/icons/Menu';
+
+import FormContainer from '../../containers/FormContainer';
+import logo from '../../img/logo.png';
 import './Header.sass';
 
-import { Button } from '@material-ui/core';
-import Menu from '@material-ui/icons/Menu';
-import SortingBar from '../../containers/SortingBarContainer';
-import FormContainer from '../../containers/FormContainer';
+function Header({ isMobile, toggleSidebar }) {
+  if (isMobile) {
+    return (
+      <header className="header mobile">
+        <FormContainer />
+        <button className="menu-button" type="button" onClick={toggleSidebar}>
+          <Menu className="menu-icon" />
+        </button>
+      </header>
+    );
+  }
 
-function Header({ isMobile, openSidebar }) {
   return (
     <header className="header">
-      {isMobile ? (
-        <Button onClick={openSidebar}>
-          <Menu />
-        </Button>
-      ) : (
-        'Hello, User!'
-      )}
-
-      {!isMobile && <SortingBar />}
+      <Link to="/">
+        <img src={logo} alt="logo" className="logo" />
+      </Link>
       <FormContainer />
     </header>
   );
@@ -26,7 +31,7 @@ function Header({ isMobile, openSidebar }) {
 
 Header.propTypes = {
   isMobile: PropTypes.bool.isRequired,
-  openSidebar: PropTypes.func.isRequired
+  toggleSidebar: PropTypes.func.isRequired
 };
 
 export default Header;

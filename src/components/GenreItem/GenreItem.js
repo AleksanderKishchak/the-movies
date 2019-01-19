@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+
+import './GenreItem.sass';
 
 function GenreItem({
   name, id, onClick, history, location
@@ -11,6 +12,7 @@ function GenreItem({
     <ListItem
       key={id}
       button
+      component="li"
       onClick={() => {
         onClick(id);
         if (location.pathname !== '/') {

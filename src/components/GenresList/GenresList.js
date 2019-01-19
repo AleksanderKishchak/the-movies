@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
-import { GenreItem } from './index';
-import genres from '../api/genres.json';
+
+import { GenreItem } from '../index';
+import genres from '../../api/genres.json';
+import './GenresList.sass';
 
 class GenreList extends React.PureComponent {
   render() {
@@ -10,9 +12,8 @@ class GenreList extends React.PureComponent {
 
     return (
       <div className="genres-list">
+        <div className="genres-label">Genres</div>
         <List>
-          Genres <br />
-          <hr />
           {genres.length > 0
             ? genres.map(({ name, id }) => (
               <GenreItem
@@ -32,7 +33,9 @@ class GenreList extends React.PureComponent {
 }
 
 GenreList.propTypes = {
-  getMoviesByGenre: PropTypes.func
+  getMoviesByGenre: PropTypes.func,
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
 };
 
 GenreList.defaultProps = {

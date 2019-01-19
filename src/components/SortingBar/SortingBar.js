@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
-import './SortingBar.sass';
-
 import Select from '@material-ui/core/Select';
+
 import StyledMenuItem from './StyledMenuItem';
+import './SortingBar.sass';
 
 import {
   POPULARITY_ASC,
@@ -33,7 +32,7 @@ class SortingBar extends Component {
 
     return (
       <div className="sorting">
-        Sort by:
+        <span className="sorting-label">Sort by:</span>
         <div className="select-wrapper">
           <Select
             style={{ marginLeft: 10 }}

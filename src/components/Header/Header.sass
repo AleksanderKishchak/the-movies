@@ -1,6 +1,5 @@
 .header
   display: flex
-  justify-content: space-between
   align-items: center
   padding: 0.8rem 1rem
   min-height: 5rem
@@ -9,3 +8,19 @@
   flex-grow: 1
   min-width: 100%
   box-sizing: border-box
+  .logo
+    width: 5rem
+    padding-left: 3px
+
+  .menu-button
+    background: none
+    border: none
+    outline: none
+    &:active
+      transform: translateY(1px)
+
+  .menu-icon
+    color: white
+
+.header.mobile
+  padding-left: 0.7rem

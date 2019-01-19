@@ -1,10 +1,21 @@
 .search
   &-form
     display: flex
-    align-self: flex-end
+    flex-grow: 1
+    align-self: center
     align-items: flex-end
-    justify-content: space-between
+    margin-left: 11.1rem
+
+    .MuiInput-underline-32:hover:not(.MuiInput-disabled-31):not(.MuiInput-focused-30):not(.MuiInput-error-33):before
+      border-bottom-color: white
+
+  &-icon
+    color: white
     
-.submit-button
-  margin-top: 0.7rem
-  align-self: flex-end
+.mobile
+  .search-form
+    margin-left: 0
+    
+@media screen and (max-width: 1240px)
+  .search-form
+    margin-left: 14%

@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { MovieCard } from '../index';
 import Loader from '../Loader/Loader';
+import SortingBar from '../../containers/SortingBarContainer';
 import ViewToggle from '../../containers/ViewToggleContainer';
 import withMobileDetection from '../withMobileDetection';
 import './MoviesList.sass';
@@ -15,7 +17,10 @@ function MoviesList({
 
   return (
     <>
-      {!isMobile && <ViewToggle />}
+      <div className="actions">
+        <SortingBar />
+        {!isMobile && <ViewToggle />}
+      </div>
       <div className="movies-list">
         {movies.length > 0
           ? movies.map(movie => (
