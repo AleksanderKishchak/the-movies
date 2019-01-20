@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import { fetchMovie } from '../../api/apiCalls';
+import { Loader } from '../index';
 import './MoviePage.sass';
 
-import { Loader } from '../index';
-import { fetchMovie } from '../../api/apiCalls';
-
 class MoviePage extends Component {
+  static propTypes = {
+    match: PropTypes.object.isRequired
+  };
+
   constructor(props) {
     super(props);
 
