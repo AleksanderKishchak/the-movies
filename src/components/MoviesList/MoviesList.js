@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { MovieCard } from '../index';
-import Loader from '../Loader/Loader';
 import SortingBar from '../../containers/SortingBarContainer';
 import ViewToggle from '../../containers/ViewToggleContainer';
 import withMobileDetection from '../withMobileDetection';
+import Loader from '../Loader/Loader';
+import { MovieCard } from '../index';
 import './MoviesList.sass';
 
 function MoviesList({

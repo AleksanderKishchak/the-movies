@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import MenuItem from '@material-ui/core/MenuItem';
 
 const styles = {

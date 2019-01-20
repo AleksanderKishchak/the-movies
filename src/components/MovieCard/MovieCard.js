@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 import './MovieCard.sass';
-
-import moment from 'moment';
 
 function MovieCard({ movie, activeViewType }) {
   const {
@@ -12,7 +11,6 @@ function MovieCard({ movie, activeViewType }) {
   } = movie;
 
   const cardClassNames = `movie-card ${activeViewType.toLowerCase()}`;
-
   const releaseDate = release_date ? moment(release_date).format('MMMM D, YYYY') : null;
   const movieOverview = overview.length > 100 ? `${overview.substr(0, 97)}...` : overview;
   const posterUrl = poster_path
@@ -41,7 +39,8 @@ function MovieCard({ movie, activeViewType }) {
 }
 
 MovieCard.propTypes = {
-  movie: PropTypes.object.isRequired
+  movie: PropTypes.object.isRequired,
+  activeViewType: PropTypes.string.isRequired
 };
 
 export default MovieCard;
