@@ -20,7 +20,7 @@ function GenreItem({
         }
       }}
     >
-      <ListItemText primary={name} />
+      <ListItemText disableTypography primary={name} className="genre-name" />
     </ListItem>
   );
 }
