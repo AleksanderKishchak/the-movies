@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { fetchMovie } from '../../api/apiCalls';
-import { Loader } from '../index';
+import Loader from '../Loader/Loader';
 import './MoviePage.sass';
 
 class MoviePage extends Component {

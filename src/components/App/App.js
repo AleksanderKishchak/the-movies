@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 
-import './App.sass';
 import MoviesList from '../../containers/MoviesListContainer';
 import GenresList from '../../containers/GenresListContainer';
 import withMobileDetection from '../withMobileDetection';
-import {
-  Sidebar, Content, Header, MoviePage, NotFound
-} from '../index';
+import Sidebar from '../Sidebar/Sidebar';
+import Content from '../Content/Content';
+import Header from '../Header/Header';
+import MoviePage from '../MoviePage/MoviePage';
+import NotFound from '../NotFound/NotFound';
+import './App.sass';
 
 class App extends Component {
   constructor(props) {

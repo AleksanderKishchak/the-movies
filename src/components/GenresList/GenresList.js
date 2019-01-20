@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 
-import { GenreItem } from '../index';
+import GenreItem from '../GenreItem/GenreItem';
 import genres from '../../api/genres.json';
 import './GenresList.sass';
 
