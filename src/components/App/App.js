@@ -5,7 +5,6 @@ import { Route, Switch } from 'react-router-dom';
 import './App.sass';
 import MoviesList from '../../containers/MoviesListContainer';
 import GenresList from '../../containers/GenresListContainer';
-import SortingBar from '../../containers/SortingBarContainer';
 import withMobileDetection from '../withMobileDetection';
 import {
   Sidebar, Content, Header, MoviePage, NotFound
