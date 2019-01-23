@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
+import ActivityGauge from '../ActivityGauge/ActivityGauge';
 import './MovieCard.sass';
 
 function MovieCard({ movie, activeViewType }) {
   const {
-    poster_path, title, release_date, overview, id
+    poster_path, title, release_date, overview, id, vote_average
   } = movie;
 
   const cardClassNames = `movie-card ${activeViewType.toLowerCase()}`;
@@ -22,12 +23,20 @@ function MovieCard({ movie, activeViewType }) {
       <div className="poster">
         <img src={posterUrl} alt={title} className="poster-image" />
       </div>
+
       <div className="info">
         <div className="title-wrapper">
-          <h3 className="title">{title}</h3>
-          {releaseDate && <time className="release-date">{releaseDate}</time>}
+          <div className="popularity">
+            <ActivityGauge value={vote_average} />
+          </div>
+          <div>
+            <h3 className="title">{title}</h3>
+            {releaseDate && <time className="release-date">{releaseDate}</time>}
+          </div>
         </div>
+
         <div className="description">{movieOverview}</div>
+
         <div className="more-info">
           <Link to={`/movie/${id}`} className="more-info-link">
             More info

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { fetchMovie } from '../../api/apiCalls';
+import ActivityGauge from '../ActivityGauge/ActivityGauge';
 import Loader from '../Loader/Loader';
+import { fetchMovie } from '../../api/apiCalls';
 import './MoviePage.sass';
 
 class MoviePage extends Component {
@@ -61,8 +62,8 @@ class MoviePage extends Component {
       poster_path,
       runtime,
       status,
-      popularity,
-      overview
+      overview,
+      vote_average
     } = movie;
     const genresName = genres.map(genre => genre.name);
 
@@ -77,24 +78,26 @@ class MoviePage extends Component {
         </div>
 
         <section className="movie-info">
-          <h3 className="movie-name">{title}</h3>
-          <span className="release-date">({release_date.substr(0, 4)})</span>
-
-          <div className="status">
-            <output>{status}</output>
+          <div className="info-header">
+            <div className="popularity">
+              <ActivityGauge value={vote_average} />
+            </div>
+            <div>
+              <h3 className="movie-name">{title}</h3>
+              <span className="release-date">({release_date.substr(0, 4)})</span>
+              <div className="status">
+                <output>{status}</output>
+              </div>
+            </div>
           </div>
-
           <dl className="info-list">
-            <dt className="runtime">Runtime</dt>
+            <dt>Runtime</dt>
             <dd>{runtime}m</dd>
 
-            <dt className="popularity">Popularity</dt>
-            <dd>{popularity}</dd>
-
-            <dt className="genres">Genres</dt>
+            <dt>Genres</dt>
             <dd>{genresName.join(', ')}</dd>
 
-            <dt className="budget">Budget</dt>
+            <dt>Budget</dt>
             <dd>{budget}$</dd>
 
             <dt>Overview</dt>
