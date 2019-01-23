@@ -2,25 +2,39 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
-const apiKey = '?api_key=b0730a1cf45ff798ff411242700e6f40';
+const apiKey = process.env.REACT_APP_API_KEY;
+
 const language = '&language=en-EN';
 
+function callApi(url) {
+  return axios
+    .get(url)
+    .then(response => response.data)
+    .catch(error => {
+      throw error;
+    });
+}
+
 export function fetchMovie(id) {
-  const url = `/movie/${id}${apiKey}${language}&append_to_response=videos`;
-  return axios.get(url).then(response => response.data);
+  const url = `/movie/${id}?api_key=${apiKey}${language}&append_to_response=videos`;
+
+  return callApi(url);
 }
 
 export function fetchMoviesByName(name) {
-  const url = `search/movie${apiKey}&query=${name}${language}`;
-  return axios.get(url).then(response => response.data.results);
+  const url = `search/movie?api_key=${apiKey}&query=${name}${language}`;
+
+  return callApi(url);
 }
 
 export function fetchMoviesByPopularity() {
-  const url = `movie/popular${apiKey}${language}`;
-  return axios.get(url).then(response => response.data.results);
+  const url = `movie/popular?api_key=${apiKey}${language}`;
+
+  return callApi(url);
 }
 
 export function fetchMoviesByGenre(genreId) {
-  const url = `/discover/movie${apiKey}${language}&sort_by=popularity.desc&include_adult=true&include_video=false&with_genres=${genreId}`;
-  return axios.get(url).then(response => response.data.results);
+  const url = `/discover/movie?api_key=${apiKey}${language}&with_genres=${genreId}`;
+
+  return callApi(url);
 }
