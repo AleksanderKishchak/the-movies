@@ -1,41 +1,47 @@
-/* eslint-disable */
+import { put, call, takeLatest } from 'redux-saga/effects';
 import {
   GET_POPULAR_MOVIES,
   GET_MOVIES_BY_GENRE,
   GET_MOVIES_BY_NAME,
-  GET_MOVIES_SUCCESS,
-  MOVIES_REQUEST
+  getMoviesSuccess,
+  requestMovies,
+  getMoviesFailed
 } from '../actions/movies';
-import { put, call, takeLatest } from 'redux-saga/effects';
 import { fetchMoviesByName, fetchMoviesByPopularity, fetchMoviesByGenre } from '../api/apiCalls';
 
 function* getPopularMovies() {
   try {
-    yield put({ type: MOVIES_REQUEST });
-    const movies = yield call(fetchMoviesByPopularity);
-    yield put({ type: GET_MOVIES_SUCCESS, movies });
+    yield put(requestMovies());
+    const data = yield call(fetchMoviesByPopularity);
+    const movies = data.results;
+    yield put(getMoviesSuccess(movies));
   } catch (error) {
     console.error(error);
+    yield put(getMoviesFailed());
   }
 }
 
 function* getMoviesByName({ name }) {
   try {
-    yield put({ type: MOVIES_REQUEST });
-    const movies = yield call(fetchMoviesByName, name);
-    yield put({ type: GET_MOVIES_SUCCESS, movies });
+    yield put(requestMovies());
+    const data = yield call(fetchMoviesByName, name);
+    const movies = data.results;
+    yield put(getMoviesSuccess(movies));
   } catch (error) {
     console.error(error);
+    yield put(getMoviesFailed());
   }
 }
 
 function* getMoviesByGenre({ genreId }) {
   try {
-    yield put({ type: MOVIES_REQUEST });
-    const movies = yield call(fetchMoviesByGenre, genreId);
-    yield put({ type: GET_MOVIES_SUCCESS, movies });
+    yield put(requestMovies());
+    const data = yield call(fetchMoviesByGenre, genreId);
+    const movies = data.results;
+    yield put(getMoviesSuccess(movies));
   } catch (error) {
     console.error(error);
+    yield put(getMoviesFailed());
   }
 }
 
