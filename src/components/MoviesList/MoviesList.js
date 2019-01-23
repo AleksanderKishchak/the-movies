@@ -9,10 +9,14 @@ import MovieCard from '../MovieCard/MovieCard';
 import './MoviesList.sass';
 
 function MoviesList({
-  movies, fetching, activeViewType, isMobile
+  movies, fetching, activeViewType, isMobile, error
 }) {
-  if (fetching) {
-    return <Loader />;
+  if (error) {
+    return <div className="error-message">Something went wrong!</div>;
+  }
+
+  if (fetching && !movies.length > 0) {
+    return <Loader wrapperStyle={{ minHeight: 'calc(100vh - 160px)' }} />;
   }
 
   return (
@@ -26,8 +30,9 @@ function MoviesList({
           ? movies.map(movie => (
             <MovieCard key={movie.id} movie={movie} activeViewType={activeViewType} />
           ))
-          : 'Movies not found'}
+          : !fetching && 'Movies not found'}
       </div>
+      {fetching ? <Loader /> : null}
     </>
   );
 }
@@ -36,7 +41,8 @@ MoviesList.propTypes = {
   movies: PropTypes.array,
   fetching: PropTypes.bool.isRequired,
   activeViewType: PropTypes.string.isRequired,
-  isMobile: PropTypes.bool.isRequired
+  isMobile: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired
 };
 
 MoviesList.defaultProps = {
