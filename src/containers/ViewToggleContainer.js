@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 
 import ViewToggle from '../components/ViewToggle/ViewToggle';
-import { setViewType } from '../actions/viewType';
+import { setViewType } from '../actions/movies';
 
-function mapStateToProps(state) {
+function mapStateToProps({ movies }) {
   return {
-    activeViewType: state.viewType
+    activeViewType: movies.viewType
   };
 }
 

@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
 
 import SortingBar from '../components/SortingBar/SortingBar';
+import { setSorting } from '../actions/movies';
 
-import { setSorting } from '../actions/sorting';
-
-const mapStateToProps = state => ({
-  activeSorting: state.sortingType
+const mapStateToProps = ({ movies }) => ({
+  activeSorting: movies.sortingType
 });
 
 const mapDispatchToProps = dispatch => ({
