@@ -51,7 +51,7 @@ class MoviePage extends Component {
     }
 
     if (fethcing) {
-      return <Loader />;
+      return <Loader wrapperStyle={{ minHeight: 'calc(100vh - 160px)' }} />;
     }
 
     const {
