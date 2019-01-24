@@ -14,10 +14,10 @@ export const getSortedMovies = createSelector(
     const newMovies = [...movies];
     switch (sortingType) {
       case POPULARITY_DESC:
-        return newMovies.sort((movie1, movie2) => movie2.vote_average - movie1.vote_average);
+        return newMovies.sort((movie1, movie2) => movie2.popularity - movie1.popularity);
 
       case POPULARITY_ASC:
-        return newMovies.sort((movie1, movie2) => movie1.vote_average - movie2.vote_average);
+        return newMovies.sort((movie1, movie2) => movie1.popularity - movie2.popularity);
 
       case RELEASE_DATE_DESC:
         return newMovies.sort((movie1, movie2) => {
