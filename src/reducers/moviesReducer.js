@@ -10,6 +10,9 @@ import {
 const initialState = {
   fetching: false,
   movies: [],
+  page: 1,
+  maxPage: 1000,
+  lastFetchURL: '',
   viewType: 'LIST',
   sortingType: 'POPULARITY_DESC',
   error: false
@@ -34,6 +37,7 @@ export default function reducer(state = { ...initialState }, action) {
     case ADD_MOVIES_SUCCESS:
       return {
         ...state,
+        page: state.page + 1,
         movies: [...state.movies, ...action.movies],
         fetching: false,
         error: false
