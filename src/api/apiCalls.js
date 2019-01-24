@@ -21,20 +21,20 @@ export function fetchMovie(id) {
   return callApi(url);
 }
 
-export function fetchMoviesByName(name) {
-  const url = `search/movie?api_key=${apiKey}&query=${name}${language}`;
+export function fetchMoviesByName(name, page = 1) {
+  const url = `search/movie?api_key=${apiKey}&query=${name}${language}&page=${page}`;
 
   return callApi(url);
 }
 
-export function fetchMoviesByPopularity() {
-  const url = `movie/popular?api_key=${apiKey}${language}`;
+export function fetchMoviesByPopularity(page = 1) {
+  const url = `movie/popular?api_key=${apiKey}${language}&page=${page}`;
 
   return callApi(url);
 }
 
-export function fetchMoviesByGenre(genreId) {
-  const url = `/discover/movie?api_key=${apiKey}${language}&with_genres=${genreId}`;
+export function fetchMoviesByGenre(genreId, page = 1) {
+  const url = `/discover/movie?api_key=${apiKey}${language}&page=${page}&with_genres=${genreId}`;
 
   return callApi(url);
 }
