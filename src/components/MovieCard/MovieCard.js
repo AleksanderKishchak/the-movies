@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
@@ -6,50 +6,52 @@ import moment from 'moment';
 import ActivityGauge from '../ActivityGauge/ActivityGauge';
 import './MovieCard.sass';
 
-function MovieCard({ movie, activeViewType }) {
-  const {
-    poster_path, title, release_date, overview, id, vote_average
-  } = movie;
+class MovieCard extends PureComponent {
+  render() {
+    const {
+      movie: {
+        poster_path, title, release_date, overview, id, vote_average
+      }
+    } = this.props;
 
-  const cardClassNames = `movie-card ${activeViewType.toLowerCase()}`;
-  const releaseDate = release_date ? moment(release_date).format('MMMM D, YYYY') : null;
-  const movieOverview = overview.length > 100 ? `${overview.substr(0, 97)}...` : overview;
-  const posterUrl = poster_path
-    ? `http://image.tmdb.org/t/p/w185/${poster_path}`
-    : 'https://via.placeholder.com/185x278/0000FF/808080';
+    const releaseDate = release_date ? moment(release_date).format('MMMM D, YYYY') : null;
+    const movieOverview = overview.length > 100 ? `${overview.substr(0, 97)}...` : overview;
+    const posterUrl = poster_path
+      ? `http://image.tmdb.org/t/p/w185/${poster_path}`
+      : 'https://via.placeholder.com/185x278/0000FF/808080';
 
-  return (
-    <article className={cardClassNames}>
-      <div className="poster">
-        <img src={posterUrl} alt={title} className="poster-image" />
-      </div>
-
-      <div className="info">
-        <div className="title-wrapper">
-          <div className="popularity">
-            <ActivityGauge value={vote_average} />
-          </div>
-          <div>
-            <h3 className="title">{title}</h3>
-            {releaseDate && <time className="release-date">{releaseDate}</time>}
-          </div>
+    return (
+      <article className="movie-card">
+        <div className="poster">
+          <img src={posterUrl} alt={title} className="poster-image" />
         </div>
 
-        <div className="description">{movieOverview}</div>
+        <div className="info">
+          <div className="title-wrapper">
+            <div className="popularity">
+              <ActivityGauge value={vote_average} />
+            </div>
+            <div>
+              <h3 className="title">{title}</h3>
+              {releaseDate && <time className="release-date">{releaseDate}</time>}
+            </div>
+          </div>
 
-        <div className="more-info">
-          <Link to={`/movie/${id}`} className="more-info-link">
-            More info
-          </Link>
+          <div className="description">{movieOverview}</div>
+
+          <div className="more-info">
+            <Link to={`/movie/${id}`} className="more-info-link">
+              More info
+            </Link>
+          </div>
         </div>
-      </div>
-    </article>
-  );
+      </article>
+    );
+  }
 }
 
 MovieCard.propTypes = {
-  movie: PropTypes.object.isRequired,
-  activeViewType: PropTypes.string.isRequired
+  movie: PropTypes.object.isRequired
 };
 
 export default MovieCard;

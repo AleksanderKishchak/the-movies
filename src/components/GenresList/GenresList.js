@@ -2,34 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 
-import GenreItem from '../GenreItem/GenreItem';
+import GenreItem from './GenreItem/GenreItem';
 import genres from '../../api/genres.json';
 import './GenresList.sass';
 
-class GenreList extends React.PureComponent {
-  render() {
-    const { getMoviesByGenre, history, location } = this.props;
-
-    return (
-      <div className="genres-list">
-        <div className="genres-label">Genres</div>
-        <List>
-          {genres.length > 0
-            ? genres.map(({ name, id }) => (
-              <GenreItem
-                history={history}
-                location={location}
-                key={id}
-                id={id}
-                name={name}
-                onClick={getMoviesByGenre}
-              />
-            ))
-            : 'no genres'}
-        </List>
-      </div>
-    );
-  }
+function GenreList({ getMoviesByGenre, history, location }) {
+  return (
+    <div className="genres-list">
+      <div className="genres-label">Genres</div>
+      <List>
+        {genres.length > 0
+          ? genres.map(({ name, id }) => (
+            <GenreItem
+              history={history}
+              location={location}
+              key={id}
+              id={id}
+              name={name}
+              onClick={getMoviesByGenre}
+            />
+          ))
+          : 'no genres'}
+      </List>
+    </div>
+  );
 }
 
 GenreList.propTypes = {
