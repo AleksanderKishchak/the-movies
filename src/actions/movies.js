@@ -3,6 +3,7 @@ export const GET_MOVIES_BY_NAME = 'GET_MOVIES_BY_NAME';
 export const GET_MOVIES_BY_GENRE = 'GET_MOVIES_BY_GENRE';
 export const GET_POPULAR_MOVIES = 'GET_POPULAR_MOVIES';
 export const GET_MOVIES_SUCCESS = 'GET_MOVIES_SUCCESS';
+export const LOAD_MORE = 'LOAD_MORE';
 export const ADD_MOVIES_SUCCESS = 'ADD_MOVIES_SUCCESS';
 export const GET_MOVIES_FAILED = 'GET_MOVIES_FAILED';
 export const SET_SORTING = 'SET_SORTING';
@@ -26,8 +27,13 @@ export function requestMovies() {
   return { type: MOVIES_REQUEST };
 }
 
-export function getMoviesSuccess(movies) {
-  return { type: GET_MOVIES_SUCCESS, movies };
+export function getMoviesSuccess(movies, URL, totalPages) {
+  return {
+    type: GET_MOVIES_SUCCESS,
+    movies,
+    URL,
+    totalPages
+  };
 }
 
 export function getMoviesFailed() {
@@ -51,4 +57,10 @@ export function getMoviesByPopularity() {
 
 export function getMoviesByGenre(genreId) {
   return { type: GET_MOVIES_BY_GENRE, genreId };
+}
+
+export function loadMore() {
+  return {
+    type: LOAD_MORE
+  };
 }
