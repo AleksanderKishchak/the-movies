@@ -1,14 +1,14 @@
 {
-  "main.css": "/the-movies/static/css/main.70700c4c.chunk.css",
-  "main.js": "/the-movies/static/js/main.6e13667b.chunk.js",
-  "main.js.map": "/the-movies/static/js/main.6e13667b.chunk.js.map",
-  "static/js/1.1e1d52a4.chunk.js": "/the-movies/static/js/1.1e1d52a4.chunk.js",
-  "static/js/1.1e1d52a4.chunk.js.map": "/the-movies/static/js/1.1e1d52a4.chunk.js.map",
+  "main.css": "/the-movies/static/css/main.0fa9d796.chunk.css",
+  "main.js": "/the-movies/static/js/main.06e8a88d.chunk.js",
+  "main.js.map": "/the-movies/static/js/main.06e8a88d.chunk.js.map",
+  "static/js/1.12fabbcb.chunk.js": "/the-movies/static/js/1.12fabbcb.chunk.js",
+  "static/js/1.12fabbcb.chunk.js.map": "/the-movies/static/js/1.12fabbcb.chunk.js.map",
   "runtime~main.js": "/the-movies/static/js/runtime~main.bc2cf526.js",
   "runtime~main.js.map": "/the-movies/static/js/runtime~main.bc2cf526.js.map",
   "static/media/logo.png": "/the-movies/static/media/logo.b205435e.png",
-  "static/css/main.70700c4c.chunk.css.map": "/the-movies/static/css/main.70700c4c.chunk.css.map",
+  "static/css/main.0fa9d796.chunk.css.map": "/the-movies/static/css/main.0fa9d796.chunk.css.map",
   "index.html": "/the-movies/index.html",
-  "precache-manifest.8c5cbdd1dcc579a34d34a046d11f3452.js": "/the-movies/precache-manifest.8c5cbdd1dcc579a34d34a046d11f3452.js",
+  "precache-manifest.810433a297a92a9639712edc9b9c99f8.js": "/the-movies/precache-manifest.810433a297a92a9639712edc9b9c99f8.js",
   "service-worker.js": "/the-movies/service-worker.js"
 }
