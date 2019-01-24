@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 
 import GenreItem from './GenreItem/GenreItem';
-import genres from '../../api/genres.json';
 import './GenresList.sass';
 
-function GenreList({ getMoviesByGenre, history, location }) {
+function GenreList({
+  getMoviesByGenre, genres, history, location
+}) {
   return (
     <div className="genres-list">
       <div className="genres-label">Genres</div>
@@ -30,12 +31,14 @@ function GenreList({ getMoviesByGenre, history, location }) {
 
 GenreList.propTypes = {
   getMoviesByGenre: PropTypes.func,
+  genres: PropTypes.array,
   history: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired
 };
 
 GenreList.defaultProps = {
-  getMoviesByGenre: () => {}
+  getMoviesByGenre: () => {},
+  genres: []
 };
 
 export default GenreList;

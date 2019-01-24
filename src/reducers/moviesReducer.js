@@ -4,7 +4,8 @@ import {
   MOVIES_REQUEST,
   SET_SORTING,
   GET_MOVIES_FAILED,
-  ADD_MOVIES_SUCCESS
+  ADD_MOVIES_SUCCESS,
+  GET_GENRES
 } from '../actions/movies';
 
 const initialState = {
@@ -15,11 +16,15 @@ const initialState = {
   lastFetchURL: '',
   viewType: 'LIST',
   sortingType: 'POPULARITY_DESC',
-  error: false
+  error: false,
+  genres: []
 };
 
 export default function reducer(state = { ...initialState }, action) {
   switch (action.type) {
+    case GET_GENRES:
+      return { ...state, genres: action.genres };
+
     case MOVIES_REQUEST:
       return { ...state, fetching: true };
 

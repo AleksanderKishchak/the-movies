@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+import resolvedSortingNames from './resolvedSortingTypeNames';
+
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
 const apiKey = process.env.REACT_APP_API_KEY;
-const language = '&language=en-EN';
+const language = '&language=ru-RU';
 
 export function callApi(url) {
   return axios
@@ -29,10 +31,16 @@ export function getURLbyParams(params = {}, page = 1) {
 
   // Getting movies by Genre
   if (params.genreId) {
-    return `/discover/movie?api_key=${apiKey}${language}&page=${page}&with_genres=${
+    const formattedSorting = resolvedSortingNames[params.activeSorting];
+
+    return `/discover/movie?api_key=${apiKey}&sort_by=${formattedSorting}${language}&page=${page}&with_genres=${
       params.genreId
     }`;
   }
 
   return `movie/popular?api_key=${apiKey}${language}&page=${page}`;
+}
+
+export function getGenresURL() {
+  return `/genre/movie/list?api_key=${apiKey}${language}`;
 }

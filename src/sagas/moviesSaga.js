@@ -1,6 +1,7 @@
 import {
   put, call, takeLatest, select
 } from 'redux-saga/effects';
+
 import {
   GET_POPULAR_MOVIES,
   GET_MOVIES_BY_GENRE,
@@ -9,9 +10,10 @@ import {
   getMoviesSuccess,
   requestMovies,
   getMoviesFailed,
-  addMovies
+  addMovies,
+  getGenres
 } from '../actions/movies';
-import { getURLbyParams, callApi } from '../api/apiCalls';
+import { getURLbyParams, callApi, getGenresURL } from '../api/apiCalls';
 
 function* getPopularMovies() {
   try {
@@ -46,8 +48,9 @@ function* getMoviesByName({ name }) {
 function* getMoviesByGenre({ genreId }) {
   try {
     yield put(requestMovies());
+    const activeSorting = yield select(state => state.movies.sortingType);
 
-    const URL = yield call(getURLbyParams, { genreId });
+    const URL = yield call(getURLbyParams, { genreId, activeSorting });
     const data = yield call(callApi, URL);
     const { results: movies, total_pages: totalPages } = data;
 
@@ -75,6 +78,11 @@ function* getMoreMovies() {
     console.error(error);
     yield put(getMoviesFailed());
   }
+}
+
+export function* getGenresSaga() {
+  const genres = yield call(callApi, getGenresURL());
+  yield put(getGenres(genres.genres));
 }
 
 export default function* watchGettingMovies() {
