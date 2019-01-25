@@ -1,14 +1,14 @@
 {
-  "main.css": "https://AleksanderKishchak.github.io/the-movies/static/css/main.0fa9d796.chunk.css",
-  "main.js": "https://AleksanderKishchak.github.io/the-movies/static/js/main.a89ac7c6.chunk.js",
-  "main.js.map": "https://AleksanderKishchak.github.io/the-movies/static/js/main.a89ac7c6.chunk.js.map",
-  "static/js/1.12fabbcb.chunk.js": "https://AleksanderKishchak.github.io/the-movies/static/js/1.12fabbcb.chunk.js",
-  "static/js/1.12fabbcb.chunk.js.map": "https://AleksanderKishchak.github.io/the-movies/static/js/1.12fabbcb.chunk.js.map",
-  "runtime~main.js": "https://AleksanderKishchak.github.io/the-movies/static/js/runtime~main.eb5d3db8.js",
-  "runtime~main.js.map": "https://AleksanderKishchak.github.io/the-movies/static/js/runtime~main.eb5d3db8.js.map",
-  "static/media/logo.png": "https://AleksanderKishchak.github.io/the-movies/static/media/logo.b205435e.png",
-  "static/css/main.0fa9d796.chunk.css.map": "https://AleksanderKishchak.github.io/the-movies/static/css/main.0fa9d796.chunk.css.map",
-  "index.html": "https://AleksanderKishchak.github.io/the-movies/index.html",
-  "precache-manifest.7dab1ad1d2fac1694c147534c0239c2b.js": "https://AleksanderKishchak.github.io/the-movies/precache-manifest.7dab1ad1d2fac1694c147534c0239c2b.js",
-  "service-worker.js": "https://AleksanderKishchak.github.io/the-movies/service-worker.js"
+  "main.css": "/the-movies/static/css/main.0fa9d796.chunk.css",
+  "main.js": "/the-movies/static/js/main.065460da.chunk.js",
+  "main.js.map": "/the-movies/static/js/main.065460da.chunk.js.map",
+  "static/js/1.12fabbcb.chunk.js": "/the-movies/static/js/1.12fabbcb.chunk.js",
+  "static/js/1.12fabbcb.chunk.js.map": "/the-movies/static/js/1.12fabbcb.chunk.js.map",
+  "runtime~main.js": "/the-movies/static/js/runtime~main.bc2cf526.js",
+  "runtime~main.js.map": "/the-movies/static/js/runtime~main.bc2cf526.js.map",
+  "static/media/logo.png": "/the-movies/static/media/logo.b205435e.png",
+  "static/css/main.0fa9d796.chunk.css.map": "/the-movies/static/css/main.0fa9d796.chunk.css.map",
+  "index.html": "/the-movies/index.html",
+  "precache-manifest.1f3924bc04a270c4fce5bd2018fbe0d2.js": "/the-movies/precache-manifest.1f3924bc04a270c4fce5bd2018fbe0d2.js",
+  "service-worker.js": "/the-movies/service-worker.js"
 }
