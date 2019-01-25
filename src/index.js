@@ -9,10 +9,9 @@ import { getMoviesByPopularity } from './actions/movies';
 import './index.sass';
 
 store.dispatch(getMoviesByPopularity());
-
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
+    <Router basename={process.env.NODE_ENV === 'production' ? process.env.PUBLIC_URL : ''}>
       <App />
     </Router>
   </Provider>,
