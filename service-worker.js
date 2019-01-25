@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/the-movies/precache-manifest.810433a297a92a9639712edc9b9c99f8.js"
+  "https://AleksanderKishchak.github.io/the-movies/precache-manifest.7dab1ad1d2fac1694c147534c0239c2b.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/the-movies/index.html", {
+workbox.routing.registerNavigationRoute("https://AleksanderKishchak.github.io/the-movies/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
