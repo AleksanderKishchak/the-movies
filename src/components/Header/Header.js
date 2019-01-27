@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import onlyUpdateForKeys from 'recompose/onlyUpdateForKeys';
 import Menu from '@material-ui/icons/Menu';
 
 import FormContainer from '../../containers/FormContainer';
@@ -34,4 +35,4 @@ Header.propTypes = {
   toggleSidebar: PropTypes.func.isRequired
 };
 
-export default Header;
+export default onlyUpdateForKeys(['isMobile'])(Header);

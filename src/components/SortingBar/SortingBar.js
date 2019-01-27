@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Select from '@material-ui/core/Select';
 
@@ -12,10 +12,14 @@ import {
   RELEASE_DATE_DESC
 } from '../../selectors/sortingSelector';
 
-class SortingBar extends Component {
+class SortingBar extends PureComponent {
   static propTypes = {
     onSetSorting: PropTypes.func.isRequired,
     activeSorting: PropTypes.string.isRequired
+  };
+
+  selectStyles = {
+    marginLeft: 10
   };
 
   handleChange = e => {
@@ -29,13 +33,12 @@ class SortingBar extends Component {
 
   render() {
     const { activeSorting } = this.props;
-
     return (
       <div className="sorting">
         <span className="sorting-label">Sort by:</span>
         <div className="select-wrapper">
           <Select
-            style={{ marginLeft: 10 }}
+            style={this.selectStyles}
             value={activeSorting}
             onChange={this.handleChange}
             inputProps={{

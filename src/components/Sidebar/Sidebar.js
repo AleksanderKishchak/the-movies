@@ -7,7 +7,6 @@ function Sidebar({
   children, isMobile, isOpen, onClose
 }) {
   const sidebarClasses = `sidebar${isMobile ? ' mobile' : ''}${isOpen ? ' open' : ''}`;
-
   return (
     <div className={sidebarClasses} onClick={onClose} role="navigation">
       <button type="button" className="close-btn" onClick={onClose}>

@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import ActivityGauge from '../ActivityGauge/ActivityGauge';
-import Loader from '../Loader/Loader';
+import ActivityGauge from '../../components/ActivityGauge/ActivityGauge';
+import Loader from '../../components/Loader/Loader';
 import { fetchMovie } from '../../api/apiCalls';
 import './MoviePage.sass';
 
 class MoviePage extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired
+  };
+
+  loaderWrapperStyles = {
+    minHeight: 'calc(100vh - 160px)'
   };
 
   constructor(props) {
@@ -51,7 +55,7 @@ class MoviePage extends Component {
     }
 
     if (fethcing) {
-      return <Loader wrapperStyle={{ minHeight: 'calc(100vh - 160px)' }} />;
+      return <Loader wrapperStyle={this.loaderWrapperStyles} />;
     }
 
     const {
@@ -100,8 +104,12 @@ class MoviePage extends Component {
             <dt>Budget</dt>
             <dd>{budget}$</dd>
 
-            <dt>Overview</dt>
-            <dd>{overview}</dd>
+            {overview && (
+              <>
+                <dt>Overview</dt>
+                <dd>{overview}</dd>
+              </>
+            )}
           </dl>
         </section>
       </div>

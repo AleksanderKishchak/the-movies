@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 
+import getDisplayName from '../helpers/getDisplayName';
+
 export default trashold => Component => {
   class withInfiniteScrolling extends PureComponent {
     constructor(props) {
@@ -48,9 +50,7 @@ export default trashold => Component => {
     }
   }
 
-  withInfiniteScrolling.displayName = `withInfiniteScrolling(${Component.displayName
-    || Component.name
-    || 'Component'})`;
+  withInfiniteScrolling.displayName = `withInfiniteScrolling(${getDisplayName(Component)})`;
 
   return withInfiniteScrolling;
 };

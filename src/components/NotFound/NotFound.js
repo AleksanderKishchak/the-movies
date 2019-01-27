@@ -5,11 +5,13 @@ import { Link } from 'react-router-dom';
 
 import './NotFound.sass';
 
+const iconStyles = { width: '10rem', height: '10rem' };
+
 function NotFound() {
   return (
     <div className="not-found">
       <div className="message">
-        <BugReport style={{ width: '10rem', height: '10rem' }} />
+        <BugReport style={iconStyles} />
         <h2>Page not found</h2>
       </div>
       <Link to="/">

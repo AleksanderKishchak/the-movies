@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
 
 import MoviesList from '../components/MoviesList/MoviesList';
+import withInfiniteScrolling from '../components/withInfiniteScrolling';
 import { getSortedMovies } from '../selectors/sortingSelector';
 import { loadMore } from '../actions/movies';
 
@@ -19,7 +21,10 @@ const mapDispatchToProps = dispatch => ({
   loadMore: () => dispatch(loadMore())
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  withInfiniteScrolling(600),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
 )(MoviesList);

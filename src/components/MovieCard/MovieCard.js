@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
@@ -6,7 +6,11 @@ import moment from 'moment';
 import ActivityGauge from '../ActivityGauge/ActivityGauge';
 import './MovieCard.sass';
 
-class MovieCard extends PureComponent {
+class MovieCard extends Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     const {
       movie: {

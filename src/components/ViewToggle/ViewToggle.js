@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ViewModule from '@material-ui/icons/ViewModule';
 import ViewList from '@material-ui/icons/ViewList';
+import { onlyUpdateForKeys } from 'recompose';
 
 import ToggleItem from './ToggleItem/ToggleItem';
 import './ViewToggle.sass';
@@ -37,4 +38,4 @@ ViewToggle.propTypes = {
   onChangeView: PropTypes.func.isRequired
 };
 
-export default ViewToggle;
+export default onlyUpdateForKeys(['activeViewType'])(ViewToggle);

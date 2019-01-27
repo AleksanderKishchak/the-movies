@@ -1,5 +1,7 @@
 import React from 'react';
 
+import getDisplayName from '../helpers/getDisplayName';
+
 const detectMobile = () => {
   const mobiles = [
     'iphone',
@@ -21,9 +23,7 @@ export default function withMobileDetection(Component) {
     return <Component {...props} isMobile={detectMobile()} />;
   }
 
-  WithMobileDetection.displayName = `withMobileDetection(${Component.displayName
-    || Component.name
-    || 'Component'})`;
+  WithMobileDetection.displayName = `withMobileDetection(${getDisplayName(Component)})`;
 
   return WithMobileDetection;
 }
