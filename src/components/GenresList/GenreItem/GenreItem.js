@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import { shouldUpdate } from 'recompose';
 
 import './GenreItem.sass';
 
-function GenreItem({
-  name, id, onClick, history, location
-}) {
+function GenreItem({ name, id, onClick }) {
   return (
     <ListItem
       key={id}
@@ -15,9 +14,6 @@ function GenreItem({
       component="li"
       onClick={() => {
         onClick(id);
-        if (location.pathname !== '/') {
-          history.push('/');
-        }
       }}
     >
       <ListItemText disableTypography primary={name} className="genre-name" />
@@ -28,13 +24,11 @@ function GenreItem({
 GenreItem.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  onClick: PropTypes.func,
-  history: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired
+  onClick: PropTypes.func
 };
 
 GenreItem.defaultProps = {
   onClick: () => {}
 };
 
-export default GenreItem;
+export default shouldUpdate(() => false)(GenreItem);
