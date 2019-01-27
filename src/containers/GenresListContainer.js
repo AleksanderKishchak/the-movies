@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import compose from 'recompose/compose';
 
-import { getMoviesByGenre } from '../actions/movies';
+import { getMoviesByGenre, setSearchText } from '../actions/movies';
 import GenresList from '../components/GenresList/GenresList';
 
 const mapStateToProps = state => ({
@@ -10,7 +10,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getMoviesByGenre: genreId => dispatch(getMoviesByGenre(genreId))
+  getMoviesByGenre: genreId => dispatch(getMoviesByGenre(genreId)),
+  clearSearchInput: () => dispatch(setSearchText(''))
 });
 
 export default compose(

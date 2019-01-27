@@ -9,6 +9,7 @@ export const LOAD_MORE = 'LOAD_MORE';
 export const MOVIES_REQUEST = 'MOVIES_REQUEST';
 export const SET_SORTING = 'SET_SORTING';
 export const SET_VIEW_TYPE = 'SET_VIEW_TYPE';
+export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';
 
 export function setViewType(viewType) {
   return {
@@ -70,5 +71,12 @@ export function getGenres(genres) {
   return {
     type: GET_GENRES,
     genres
+  };
+}
+
+export function setSearchText(text) {
+  return {
+    type: SET_SEARCH_TEXT,
+    text
   };
 }

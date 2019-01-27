@@ -5,7 +5,8 @@ import {
   SET_SORTING,
   GET_MOVIES_FAILED,
   ADD_MOVIES_SUCCESS,
-  GET_GENRES
+  GET_GENRES,
+  SET_SEARCH_TEXT
 } from '../actions/movies';
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
   lastFetchURL: '',
   viewType: 'LIST',
   sortingType: 'POPULARITY_DESC',
+  searchText: '',
   error: false,
   genres: []
 };
@@ -55,6 +57,9 @@ export default function reducer(state = { ...initialState }, action) {
 
     case SET_VIEW_TYPE:
       return { ...state, viewType: action.viewType };
+
+    case SET_SEARCH_TEXT:
+      return { ...state, searchText: action.text };
 
     default:
       return state;

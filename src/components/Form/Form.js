@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import './Form.sass';
 
+// styles for material ui input
 const styles = () => ({
   input: {
     color: 'white'
@@ -36,43 +37,32 @@ const styles = () => ({
   }
 });
 
-class Form extends Component {
+class Form extends PureComponent {
   static propTypes = {
-    onSubmit: PropTypes.func,
+    onSubmit: PropTypes.func.isRequired,
+    onInputChange: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    searchText: PropTypes.string.isRequired
   };
-
-  static defaultProps = {
-    onSubmit: () => {}
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      input: ''
-    };
-  }
 
   onChange = e => {
-    const { name, value } = e.target;
+    const { value } = e.target;
+    const { onInputChange } = this.props;
 
-    this.setState({
-      [name]: value
-    });
+    onInputChange(value);
   };
 
   onSubmit = e => {
     const { onSubmit, history, location } = this.props;
-    const { input } = this.state;
+    const { searchText } = this.props;
     e.preventDefault();
 
-    if (!input) return;
+    if (!searchText) return;
 
     if (typeof onSubmit === 'function') {
-      onSubmit(input);
+      onSubmit(searchText);
     }
 
     if (location.pathname !== '/') {
@@ -81,8 +71,7 @@ class Form extends Component {
   };
 
   render() {
-    const { input } = this.state;
-    const { classes } = this.props;
+    const { classes, searchText } = this.props;
 
     return (
       <form onSubmit={this.onSubmit} className="search-form">
@@ -99,8 +88,8 @@ class Form extends Component {
           <Input
             onChange={this.onChange}
             type="search"
-            value={input}
-            name="input"
+            value={searchText}
+            name="search-input"
             id="search-input"
             fullWidth
             classes={{
