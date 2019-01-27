@@ -1,10 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import SortingBar from '../../containers/SortingBarContainer';
-import ViewToggle from '../../containers/ViewToggleContainer';
-import withMobileDetection from '../withMobileDetection';
-import withInfiniteScrolling from '../withInfiniteScrolling';
 import Loader from '../Loader/Loader';
 import MovieCard from '../MovieCard/MovieCard';
 import './MoviesList.sass';
@@ -14,7 +10,6 @@ class MoviesList extends PureComponent {
     movies: PropTypes.array,
     fetching: PropTypes.bool.isRequired,
     activeViewType: PropTypes.string.isRequired,
-    isMobile: PropTypes.bool.isRequired,
     error: PropTypes.bool.isRequired,
     reachedBottom: PropTypes.bool,
     loadMore: PropTypes.func
@@ -24,6 +19,10 @@ class MoviesList extends PureComponent {
     movies: [],
     reachedBottom: false,
     loadMore: () => {}
+  };
+
+  loaderWrapperStyles = {
+    minHeight: 'calc(100vh - 260px)'
   };
 
   componentDidUpdate(prevProps) {
@@ -36,19 +35,15 @@ class MoviesList extends PureComponent {
 
   render() {
     const {
-      movies, fetching, activeViewType, isMobile, error
+      movies, fetching, activeViewType, error
     } = this.props;
 
     if (fetching && !movies.length > 0) {
-      return <Loader wrapperStyle={{ minHeight: 'calc(100vh - 160px)' }} />;
+      return <Loader wrapperStyle={this.loaderWrapperStyles} />;
     }
 
     return (
       <>
-        <div className="actions">
-          <SortingBar />
-          {!isMobile && <ViewToggle />}
-        </div>
         <div className={`movies-list ${activeViewType.toLowerCase()}`}>
           {movies.length > 0
             ? movies.map(movie => <MovieCard key={movie.id} movie={movie} />)
@@ -61,4 +56,4 @@ class MoviesList extends PureComponent {
   }
 }
 
-export default withInfiniteScrolling(600)(withMobileDetection(MoviesList));
+export default MoviesList;
