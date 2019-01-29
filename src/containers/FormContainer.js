@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
+import { compose } from 'recompose';
 import { getMoviesByName, setSearchText } from '../actions/movies';
 import Form from '../components/Form/Form';
 
@@ -13,9 +14,10 @@ const mapDispatchToProps = dispatch => ({
   onInputChange: text => dispatch(setSearchText(text))
 });
 
-export default withRouter(
+export default compose(
+  withRouter,
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(Form)
-);
+  )
+)(Form);
