@@ -5,10 +5,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import store from './store';
 import App from './components/App/App';
-import { getMoviesByPopularity } from './actions/movies';
+import { getMoviesByParams } from './actions/movies';
 import './index.sass';
 
-store.dispatch(getMoviesByPopularity());
+store.dispatch(getMoviesByParams());
+
 ReactDOM.render(
   <Provider store={store}>
     <Router basename={process.env.NODE_ENV === 'production' ? process.env.PUBLIC_URL : ''}>

@@ -3,9 +3,7 @@ import {
 } from 'redux-saga/effects';
 
 import {
-  GET_POPULAR_MOVIES,
-  GET_MOVIES_BY_GENRE,
-  GET_MOVIES_BY_NAME,
+  GET_MOVIES_BY_PARAM,
   LOAD_MORE,
   getMoviesSuccess,
   requestMovies,
@@ -15,42 +13,10 @@ import {
 } from '../actions/movies';
 import { getURLbyParams, callApi, getGenresURL } from '../api/apiCalls';
 
-function* getPopularMovies() {
+function* getMovies(action) {
   try {
     yield put(requestMovies());
-
-    const URL = yield call(getURLbyParams);
-    const data = yield call(callApi, URL);
-    const { results: movies, total_pages: totalPages } = data;
-
-    yield put(getMoviesSuccess(movies, URL, totalPages));
-  } catch (error) {
-    console.error(error);
-    yield put(getMoviesFailed());
-  }
-}
-
-function* getMoviesByName({ name }) {
-  try {
-    yield put(requestMovies());
-
-    const URL = yield call(getURLbyParams, { name });
-    const data = yield call(callApi, URL);
-    const { results: movies, total_pages: totalPages } = data;
-
-    yield put(getMoviesSuccess(movies, URL, totalPages));
-  } catch (error) {
-    console.error(error);
-    yield put(getMoviesFailed());
-  }
-}
-
-function* getMoviesByGenre({ genreId }) {
-  try {
-    yield put(requestMovies());
-    const activeSorting = yield select(state => state.movies.sortingType);
-
-    const URL = yield call(getURLbyParams, { genreId, activeSorting });
+    const URL = yield call(getURLbyParams, action);
     const data = yield call(callApi, URL);
     const { results: movies, total_pages: totalPages } = data;
 
@@ -63,7 +29,7 @@ function* getMoviesByGenre({ genreId }) {
 
 function* getMoreMovies() {
   try {
-    const { lastFetchURL, currentPage, totalPages } = yield select(({ movies }) => movies);
+    const { lastFetchURL, currentPage, totalPages } = yield select(state => state.movies);
 
     if (currentPage >= totalPages) {
       return;
@@ -86,8 +52,6 @@ export function* getGenresSaga() {
 }
 
 export default function* watchGettingMovies() {
-  yield takeLatest(GET_POPULAR_MOVIES, getPopularMovies);
-  yield takeLatest(GET_MOVIES_BY_NAME, getMoviesByName);
-  yield takeLatest(GET_MOVIES_BY_GENRE, getMoviesByGenre);
+  yield takeLatest(GET_MOVIES_BY_PARAM, getMovies);
   yield takeLatest(LOAD_MORE, getMoreMovies);
 }
