@@ -83,7 +83,7 @@ function ActivityGauge({ value }) {
     ]
   };
 
-  return <HighchartsReact highcharts={Highcharts} options={options} />;
+  return <HighchartsReact highcharts={Highcharts} options={options} allowChartUpdate={false} />;
 }
 
 ActivityGauge.propTypes = {

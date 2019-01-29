@@ -6,7 +6,7 @@ import getUserLanguage from '../helpers/getUserLanguage';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
 const apiKey = process.env.REACT_APP_API_KEY;
-const language = `&language=${getUserLanguage}`;
+const language = `&language=${getUserLanguage()}`;
 
 export function callApi(url) {
   return axios
