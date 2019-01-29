@@ -9,22 +9,22 @@ class GoUp extends PureComponent {
   };
 
   componentDidMount() {
-    window.addEventListener('wheel', this.onWheel);
+    window.addEventListener('scroll', this.onScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('wheel', this.onWheel);
+    window.removeEventListener('scroll', this.onScroll);
   }
 
-  onWheel = e => {
+  onScroll = () => {
     const { visible } = this.state;
     const { scrollY } = window;
 
-    if ((e.deltaY > 0 && visible) || scrollY < 1000) {
+    if (visible && scrollY < 1000) {
       this.setState({
         visible: false
       });
-    } else if (e.deltaY < 0 && !visible && scrollY > 1000) {
+    } else if (!visible && scrollY >= 1000) {
       this.setState({
         visible: true
       });
