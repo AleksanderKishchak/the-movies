@@ -2,18 +2,18 @@ import React, { Component, Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 
-import GenresList from '../../containers/GenresListContainer';
 import withMobileDetection from '../withMobileDetection';
-import Sidebar from '../Sidebar/Sidebar';
 import Content from '../Content/Content';
-import Header from '../Header/Header';
-import NotFound from '../NotFound/NotFound';
 import Loader from '../Loader/Loader';
 import GoUp from '../GoUp/GoUp';
 import './App.sass';
 
 const MoviesListPage = lazy(() => import('../../pages/MoviesListPage/MoviesListPage'));
 const MoviePage = lazy(() => import('../../pages/MoviePage/MoviePage'));
+const Header = lazy(() => import('../Header/Header'));
+const GenresList = lazy(() => import('../../containers/GenresListContainer'));
+const Sidebar = lazy(() => import('../Sidebar/Sidebar'));
+const NotFound = lazy(() => import('../NotFound/NotFound'));
 
 class App extends Component {
   constructor(props) {
@@ -41,20 +41,22 @@ class App extends Component {
     const { isSidebarOpen } = this.state;
     return (
       <div className="App">
-        <GoUp />
-        <Header isMobile={isMobile} toggleSidebar={this.toggleSidebar} />
-        <Sidebar isMobile={isMobile} isOpen={isSidebarOpen} onClose={this.closeSidebar}>
-          <GenresList />
-        </Sidebar>
-        <Content>
-          <Suspense fallback={<Loader verticalCenter />}>
-            <Switch>
-              <Route exact path="/" component={MoviesListPage} />
-              <Route path="/movie/:id" render={props => <MoviePage {...props} />} />
-              <Route component={NotFound} />
-            </Switch>
-          </Suspense>
-        </Content>
+        <Suspense fallback={<Loader verticalCenter />}>
+          <GoUp />
+          <Header isMobile={isMobile} toggleSidebar={this.toggleSidebar} />
+          <Sidebar isMobile={isMobile} isOpen={isSidebarOpen} onClose={this.closeSidebar}>
+            <GenresList />
+          </Sidebar>
+          <Content>
+            <Suspense fallback={<Loader verticalCenter />}>
+              <Switch>
+                <Route exact path="/" component={MoviesListPage} />
+                <Route path="/movie/:id" render={props => <MoviePage {...props} />} />
+                <Route component={NotFound} />
+              </Switch>
+            </Suspense>
+          </Content>
+        </Suspense>
       </div>
     );
   }
