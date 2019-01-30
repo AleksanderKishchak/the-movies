@@ -1,17 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 
-import MoviesListPage from '../../pages/MoviesListPage/MoviesListPage';
 import GenresList from '../../containers/GenresListContainer';
 import withMobileDetection from '../withMobileDetection';
 import Sidebar from '../Sidebar/Sidebar';
 import Content from '../Content/Content';
 import Header from '../Header/Header';
-import MoviePage from '../../pages/MoviePage/MoviePage';
 import NotFound from '../NotFound/NotFound';
+import Loader from '../Loader/Loader';
 import GoUp from '../GoUp/GoUp';
 import './App.sass';
+
+const MoviesListPage = lazy(() => import('../../pages/MoviesListPage/MoviesListPage'));
+const MoviePage = lazy(() => import('../../pages/MoviePage/MoviePage'));
 
 class App extends Component {
   constructor(props) {
@@ -45,11 +47,13 @@ class App extends Component {
           <GenresList />
         </Sidebar>
         <Content>
-          <Switch>
-            <Route exact path="/" component={MoviesListPage} />
-            <Route path="/movie/:id" render={props => <MoviePage {...props} />} />
-            <Route component={NotFound} />
-          </Switch>
+          <Suspense fallback={<Loader verticalCenter />}>
+            <Switch>
+              <Route exact path="/" component={MoviesListPage} />
+              <Route path="/movie/:id" render={props => <MoviePage {...props} />} />
+              <Route component={NotFound} />
+            </Switch>
+          </Suspense>
         </Content>
       </div>
     );

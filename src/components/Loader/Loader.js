@@ -3,20 +3,24 @@ import PropTypes from 'prop-types';
 
 import './Loader.sass';
 
-function Loader({ wrapperStyle }) {
+const centeringStyles = {
+  minHeight: 'calc(100vh - 260px)'
+};
+
+function Loader({ verticalCenter }) {
   return (
-    <div className="loader-wrap" style={wrapperStyle}>
+    <div className="loader-wrap" style={verticalCenter ? centeringStyles : {}}>
       <div className="loader" />
     </div>
   );
 }
 
 Loader.propTypes = {
-  wrapperStyle: PropTypes.object
+  verticalCenter: PropTypes.bool
 };
 
 Loader.defaultProps = {
-  wrapperStyle: {}
+  verticalCenter: false
 };
 
 export default Loader;

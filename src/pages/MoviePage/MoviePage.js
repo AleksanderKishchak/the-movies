@@ -11,10 +11,6 @@ class MoviePage extends Component {
     match: PropTypes.object.isRequired
   };
 
-  loaderWrapperStyles = {
-    minHeight: 'calc(100vh - 160px)'
-  };
-
   constructor(props) {
     super(props);
 
@@ -55,7 +51,7 @@ class MoviePage extends Component {
     }
 
     if (fethcing) {
-      return <Loader wrapperStyle={this.loaderWrapperStyles} />;
+      return <Loader verticalCenter />;
     }
 
     const {

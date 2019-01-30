@@ -21,10 +21,6 @@ class MoviesList extends PureComponent {
     loadMore: () => {}
   };
 
-  loaderWrapperStyles = {
-    minHeight: 'calc(100vh - 260px)'
-  };
-
   componentDidUpdate(prevProps) {
     const { reachedBottom, loadMore } = this.props;
 
@@ -39,7 +35,7 @@ class MoviesList extends PureComponent {
     } = this.props;
 
     if (fetching && !movies.length > 0) {
-      return <Loader wrapperStyle={this.loaderWrapperStyles} />;
+      return <Loader verticalCenter />;
     }
 
     return (
