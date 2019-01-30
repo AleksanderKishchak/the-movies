@@ -33,6 +33,9 @@ const styles = () => ({
     borderBottomColor: 'white',
     '&:before': {
       borderBottomColor: 'white'
+    },
+    '&:hover:before': {
+      borderBottomColor: 'white!important'
     }
   }
 });
